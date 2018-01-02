@@ -29,5 +29,20 @@
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+	<script type="text/javascript">
+		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+		if(!navigator.getUserMedia){
+			alert('不支持navigator.getUserMedia ');
+		}
+		window.AudioContext = window.AudioContext || window.webkitAudioContext;
+
+		if(!window.AudioContext){
+			alert('不支持audiocontect')
+		}
+
+		if(!navigator.mediaDevices.getUserMedia){
+			alert('不支持navigator.mediaDevices.getUserMedia');
+		}
+	</script>
 </body>
 </html>
