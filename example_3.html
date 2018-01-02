@@ -73,7 +73,7 @@
 				} else if (audioContext.createScriptProcessor) {
 					processor = audioContext.createScriptProcessor(config.bufferLen, config.numChannels, config.numChannels);
 				} else {
-					console.log('WebAudio API has no support on this browser.');
+					alert('WebAudio API has no support on this browser.');
 				}
 
 				processor.connect(audioContext.destination);
