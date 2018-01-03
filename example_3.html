@@ -80,14 +80,10 @@
 				/**
 				*  ask permission of the user for use microphone or camera  
 				* */
-				if(navigator.mediaDevices.getUserMedia){
-						navigator.mediaDevices.getUserMedia({ audio: true, video: false })
-						.then(gotStreamMethod)
-						.catch(logError);
-					}else{
-						alert('不支持navigator.mediaDevices.getUserMedia');
-					}
-			
+				navigator.mediaDevices.getUserMedia({ audio: true, video: false })
+				.then(gotStreamMethod)
+				.catch(logError);
+				
 			};
 
 			let getBuffers = (event) => {
