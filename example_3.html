@@ -16,7 +16,7 @@
 		<div>
 			<canvas class="js-volume" width="20" height="140"></canvas>
 		</div>
-		<!--<audio controls type="audio/mpeg"></audio>-->
+		<audio controls type="audio/mpeg"></audio>
 		<br>
 		<button class="btn waves-effect waves-light js-start">Start</button>
 		<button class="btn waves-effect waves-light js-stop" disabled>Stop</button>
@@ -50,6 +50,7 @@
 			let codeBtn = document.querySelector('.js-code');
 			let pre = document.querySelector('pre');
 			let downloadLink = document.getElementById('download');
+			let audioElement = document.querySelector('audio');
 			let encoder = null;
 			let microphone;
 			let isRecording = false;
@@ -99,6 +100,7 @@
 			let gotStreamMethod = (stream) => {
 				startBtn.setAttribute('disabled', true);
 				stopBtn.removeAttribute('disabled');
+				audioElement.src = "";
 				config = {
 					bufferLen: 4096,
 					numChannels: 2,
@@ -120,6 +122,7 @@
 				* Give the node a function to process audio events 
 				*/
 				processor.onaudioprocess = function(event) {
+					console.log('onaudioprocess');
 					encoder.encode(getBuffers(event));
 				};
 
@@ -131,18 +134,7 @@
 					audioContext.close();
 					processor.disconnect();
 					tracks.forEach(track => track.stop());
-					// audioElement.src = URL.createObjectURL(encoder.finish());
-                    var audio = document.createElement("audio");
-
-                    if (audio != null){
-
-                        audio.src = URL.createObjectURL(encoder.finish());
-
-                        if (audio.paused) { //判读是否播放
-
-                            audio.play(); //没有就播放
-                        }
-                    }
+					audioElement.src = URL.createObjectURL(encoder.finish());
 				};
 
 				analizer(audioContext);
