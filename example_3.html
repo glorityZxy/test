@@ -37,7 +37,7 @@
 		 * Detecte the correct AudioContext for the browser 
 		 * */
 		window.AudioContext = window.AudioContext || window.webkitAudioContext;
-		navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
+		//navigator.getUserMedia  = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
 		var recorder = new RecordVoiceAudios();
 		let startBtn = document.querySelector('.js-start');
 		let stopBtn = document.querySelector('.js-stop');
@@ -73,7 +73,7 @@
 				} else if (audioContext.createScriptProcessor) {
 					processor = audioContext.createScriptProcessor(config.bufferLen, config.numChannels, config.numChannels);
 				} else {
-					alert('WebAudio API has no support on this browser.');
+					console.log('WebAudio API has no support on this browser.');
 				}
 
 				processor.connect(audioContext.destination);
